@@ -43,9 +43,16 @@ const Viewer = ({ portal }: any) => {
       <Environment preset="night" />
       <ambientLight />
       <Model position={[0, -1.2, 2.8]} />
-      <Model position={[-3.55, -1.2, 42.7]} />
+      <Model position={[-3.56, -1.2, 42.8]} />
       <Model position={[3.55, -1.2, -37.1]} />
-      <OrbitControls />
+      <OrbitControls
+        enablePan={false}
+        minAzimuthAngle={-Math.PI / 8}
+        maxAzimuthAngle={Math.PI / 8}
+        minPolarAngle={Math.PI / 6}
+        maxPolarAngle={Math.PI / 2}
+        enableZoom={false}
+      />
       <CartModel
         scale={0.18}
         castShadow

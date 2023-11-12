@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useGLTF, Html, Mask, PivotControls } from "@react-three/drei";
 import { useUser } from "./useUser";
+import { useFrame } from "@react-three/fiber";
 
 export function CartModel({ portal, ...props }: any) {
+  const cart = useRef<any>();
   const { nodes, materials } = useGLTF("/cart.gltf") as any;
   const { firstName, lastName, imageUrl } = useUser();
 
+  useFrame(({ clock }) => {
+    if (cart.current && cart.current.rotation.y < (Math.PI / 2) * 8) {
+      cart.current.rotation.y = clock.getElapsedTime() * 12;
+    }
+  });
+
   return (
-    <group {...props} dispose={null}>
+    <group ref={cart} {...props} dispose={null}>
       <mesh
         castShadow
         receiveShadow

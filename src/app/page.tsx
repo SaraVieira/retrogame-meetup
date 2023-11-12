@@ -7,7 +7,7 @@ export default function Example() {
 
   return (
     <div className="w-screen h-screen flex items-center justify-center gap-4">
-      <UserButton afterSignOutUrl="/" />{" "}
+      <UserButton afterSignOutUrl="/" />
       {user && <Link href={`signups/${user.id}`}>See your ticket</Link>}
     </div>
   );
