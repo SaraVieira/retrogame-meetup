@@ -5,6 +5,7 @@ import { useFrame } from "@react-three/fiber";
 
 export function CartModel({ portal, ...props }: any) {
   const cart = useRef<any>();
+  const dialog = useRef<any>();
   const { nodes, materials } = useGLTF("/cart.gltf") as any;
   const { firstName, lastName, imageUrl } = useUser();
 
@@ -64,15 +65,51 @@ export function CartModel({ portal, ...props }: any) {
                   className="absolute h-full top-0 left-1/2 w-full max-w-7xl z-10 -translate-x-1/2"
                 />
                 <div className="relative z-20 flex flex-col justify-center">
-                  <span className="text-center font-bold block w-full text-[14px] mb-8 mt-9 text-white">
+                  <span className="text-center font-bold block w-full text-[14px] mb-2 text-white">
                     Retro Games Meetup #3
                   </span>
-                  <div className="flex gap-2 justify-center items-center">
-                    <img src={imageUrl} alt={firstName} className="w-12" />
-                    <span className="text-center">
-                      {firstName} {lastName}
+                  <div className="nes-badge mb-8 !w-[150px]">
+                    <span className="is-dark flex gap-2 justify-center items-center flex-col ">
+                      <img src={imageUrl} alt={firstName} className="w-12" />
+                      <span className="max-w-full overflow-hidden">
+                        {firstName} {lastName}
+                      </span>
                     </span>
                   </div>
+                  <button
+                    onClick={() => dialog.current.showModal()}
+                    className="nes-btn block !mt-16"
+                  >
+                    Share
+                  </button>
+                  <dialog className="nes-dialog" ref={dialog}>
+                    <form method="dialog">
+                      <p className="title">Share your ticket</p>
+                      <section className="icon-list flex gap-2 mb-4">
+                        <a
+                          href={`http://twitter.com/share?text=I am going to the retro game meetup!&url=${window.location.href}`}
+                          target="_blank"
+                        >
+                          <i className="nes-icon twitter is-large"></i>
+                        </a>
+                        <a
+                          href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`}
+                          target="_blank"
+                        >
+                          <i className="nes-icon facebook is-large"></i>
+                        </a>
+                        <a
+                          href={`https://www.reddit.com/submit?url=${window.location.href}`}
+                          target="_blank"
+                        >
+                          <i className="nes-icon reddit is-large"></i>
+                        </a>
+                      </section>
+                      <menu className="dialog-menu">
+                        <button className="nes-btn">Close</button>
+                      </menu>
+                    </form>
+                  </dialog>
                 </div>
               </div>
             </div>

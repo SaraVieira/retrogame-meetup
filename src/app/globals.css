@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -19,12 +18,7 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: #fec47e !important;
 }
 
 canvas {
@@ -61,6 +55,24 @@ canvas {
   z-index: 1;
 }
 
-.font-2p {
-  font-family: "Press Start 2P";
+.cl-rootBox .cl-card {
+  background: transparent;
+  box-shadow: none;
+  width: auto;
+  padding: 0;
+  padding-left: 20px;
+  height: 200px;
+  gap: 0.5rem;
+}
+
+.cl-rootBox .cl-headerTitle,
+.cl-rootBox .cl-headerSubtitle,
+.cl-rootBox .cl-footer {
+  display: none;
+}
+
+.cl-rootBox .cl-footer + div {
+  transform: none;
+  position: inherit;
+  border-radius: 0;
 }
