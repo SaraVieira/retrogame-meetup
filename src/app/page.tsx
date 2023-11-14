@@ -1,5 +1,5 @@
 "use client";
-import { SignIn, UserButton, useAuth, useUser } from "@clerk/nextjs";
+import { SignIn, useAuth, useUser } from "@clerk/nextjs";
 import Link from "next/link";
 
 export default function Example() {
@@ -45,7 +45,16 @@ export default function Example() {
                 </button>
               </div>
             </div>
-          ) : null}
+          ) : (
+            <div className="flex flex-col items-center gap-4 my-8 justify-center">
+              <p className="nes-text flex items-center gap-2">
+                Login to join!<i className="nes-icon coin"></i>
+              </p>
+              <div>
+                <SignIn />
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </>
